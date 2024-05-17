@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site Personnel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+  body {
+    background-color: violet; /* Couleur darrière-plan */
+}
+#contact {
+    background-color: #f0f0f0; /* Couleur de fond de la section de contact */
+    padding: 20px; /* Ajoutez un peu de marge intérieure pour lespace */
+}
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .open .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .open .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .menu-container {
+            max-width: 80%;
+            margin: 0 auto;
+          z-index:10;
+          
+        }
+
+        .menu {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+          z-index:10;
+                box-shadow: 0 2px 7px black;
+        }
+
+        .menu li {
+            margin-right: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+        }
+
+  @media(max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .menu-icon:hover .bar {
+        background-color: #666;
+    }
+
+    .menu-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .show {
+        display: block;
+        position: fixed;
+        top: 30px;
+        left: 60px;
+        background-color: violet; /* Couleur de fond */
+        padding: 10px;
+        box-shadow: 2 3px 5px black;
+        border-radius: 5px;
+    }
+
+    .show li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+   .contact-icons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .contact-icons a {
+            text-decoration: none;
+            color: #333;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        .contact-icons a:hover {
+            color: #666;
+        }
+
+        #accueil {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+    .background-images {
+        /* Autres propriétés CSS */
+        background-color: white; /* Image de fond initiale */
+    }
+
+        .background-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease;
+        }
+
+        h1, p, div {
+            position: relative;
+            z-index: 2;
+        }
+
+        button {
+            position: relative;
+            z-index: 2;
+        }
+
+        .arrow-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #previousButton {
+            left: 10px;
+        }
+
+        #nextButton {
+            right: 10px;
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent #fff;
+        }
+
+        .dot-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #333;
+        }
+
+  
+          #portfolio {
+            background-color: #fff; /* Fond blanc pour chaque expérience */
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px black; /* Ombre légère */
+        }
+  
+            #experience {
+            background-color: #fff; /* Fond blanc pour chaque expérience */
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px black; /* Ombre légère */
+        }
+  .project-image {
+    max-width: 100%; /* Limite la largeur de l'image à la largeur de son conteneur */
+    max-height: 200px; /* Limite la hauteur de l'image à 300 pixels */
+    display: block; /* Assure que l'image est affichée en tant que bloc */
+    margin: 0 auto; /* Centre l'image horizontalement */
+    border: 0px;
+    border-radius: 10px;
+}
+  /* Style des liens dans la section Portfolio */
+.project a {
+    display: inline-block;
+    background-color: #007bff; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement à l'intérieur du lien */
+    border-radius: 5px; /* Coins arrondis */
+    text-decoration: none; /* Supprimer la soulignement par défaut */
+    transition: background-color 0.3s ease; /* Animation de transition */
+}
+
+.project a:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+}
+  /* Style des descriptions des projets */
+.project p {
+    font-size: 16px; /* Taille de la police */
+    color: black; /* Couleur du texte */
+  text-align: center;
+    margin-top: 10px; /* Espacement au-dessus du paragraphe */
+    line-height: 1.5; /* Hauteur de ligne pour une meilleure lisibilité */
+}
+
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center; /* Centrer le titre */
+        }
+
+
+        .experience h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .experience p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+  
+    /* Section Parcours académique */
+           #parcours {
+            background-color: #fff; /* Fond blanc pour chaque expérience */
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px black; /* Ombre légère */
+        }
+
+    #parcours h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    #parcours ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #parcours li {
+        font-size: 15px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    #parcours li::before {
+        content: "• ";
+        color: #007bff;
+    }
+            #a-propos {
+            background-color: #fff; /* Fond blanc pour chaque expérience */
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px black; /* Ombre légère */
+        }
+        #a-propos h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #a-propos p {
+            font-size: 15px;
+            line-height: 1.4;
+            color: black;
+          font-weight: 500;
+        }
+
+        #a-propos p:nth-child(2n) {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* Styling pour la flèche */
+        .arrow {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Styling pour le contenu à cacher */
+        #a-propos-content {
+            display: none; /* Contenu initialement caché */
+            margin-top: 20px;
+        }
+
+        /* Styling pour le contenu dévoilé */
+        .revealed {
+            display: block !important; /* Utilisation de !important pour forcer l'affichage */
+        }
+          
+        #a-propos strong {
+            font-weight: inherit; /* Héritage du poids de police normal */
+            color: black; /* Couleur noir pour le texte à l'intérieur de strong */
+            text-align: center; /* Centrage du texte */
+            text-align-last: center; /* Centrage du dernier alignement de texte */
+          line-height: 1.4;
+        }
+          
+               
+          
+    </style>
+</head>
+<body>
+
+    <!-- Menu de navigation -->
+    <nav>
+        <div class="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="menu-container">
+            <ul class="menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="#parcours">Parcours académique</a></li>
+                <li><a href="#experience">Expérience professionnelle</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+      
+<!-- Section Accueil -->
+<section id="accueil">
+    <div class="background-images"></div>
+    <img src="kpd21.jpg" alt="Photo de profil" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom: 0px; position: relative; z-index: 2;">
+    <h1 style="font-size: 36px; color: #333; position: relative; z-index: 2;">Bienvenue sur Mon Site Personnel</h1>
+    <p style="font-size: 18px; color: #666; position: relative; z-index: 2;">Découvrez mes réalisations, compétences et expériences.</p>
+    <div style="margin-top: 5px; position: relative; z-index: 2;">
+        <a href="#portfolio" style="background-color: #007bff; color: #fff; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-size: 16px;">Découvrir mon Portfolio</a>
+    </div>
+          <button id="previousButton" class="arrow-button" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); z-index: 2;"><span class="arrow" style="transform: rotate(180deg);"></span></button>
+    <button id="nextButton" class="arrow-button" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); z-index: 2;"><span class="arrow"></span></button>
+      <div class="dot-container" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 2;">       
+        <div class="dot" data-index="1"></div>
+        <div class="dot" data-index="2"></div>
+    </div>
+</section>
+
+<!-- Section À propos de moi -->
+    <section id="a-propos">
+        <h2>À propos de moi</h2>
+        <!-- Flèche pour dérouler le contenu -->
+        <div class="arrow" onclick="toggleContent()">▼</div>
+
+        <!-- Contenu à propos de moi -->
+        <div id="a-propos-content">
+ 
+            <p>
+                Nom: Kouyahbé<br>
+                Prénom: Payimi Deube<br>
+                Niveau: Licence 3<br>
+                Filière: Informatique<br>
+                Pays: Tchad<br>
+                Ville d'origine: Kélo<br>
+                Ville actuelle: Ngaoundéré<br>
+                Adresse: Bini/Dang<br>
+               Numéro de téléphone: [+237 657233593 / +235 61806758]<br>
+                Adresse e-mail: kouyahbepd@gmail.com<br>
+                Situation matrimoniale: Célibataire<br>
+                Langues: Français parlé et écrit (courant), Anglais parlé et écrit (notion),
+               Arabe littéraire parlé (notion) <br>
+            </p>
+                              <strong>Passionné par l'informatique depuis le collège, je disais toujours que c'est 
+                le domaine dans lequel je veux tracer ma carrière. L'informatique étant vaste, je pense donc à me 
+                spécialiser dans la sécurité. La cybersécurité est donc devenue ma passion, j'aimerais un jour devenir un grand 
+                spécialiste de sécurité informatique. Pour le moment, j'acquiers autour du monde numérique certaines
+                compétences comme le développement web, les langages de programmation, la maintenance informatique, le réseau, ...</strong>
+
+          </div>
+    </section>
+
+
+    <!-- Section Parcours académique -->
+<section id="parcours">
+    <h2>Parcours académique</h2>
+    <ul>
+        <li>Licence 2 en Informatique (2022 - 2023): Université De Ngaoundéré</li>
+      <li>Licence 1 en Informatique (2021 - 2022): Université De Ngaoundéré</li>
+        <li>Baccalauréat Serie D (2021): Lycée Adoum Dallah De Moundou</li>
+        <li>Brevet d'Etude Fondamentale (2016): Collège La Nouvelle Vision De N'djamena</li>
+        <li>Certificat d'études primaires (2013): École Primaire De La Loumia</li>
+    </ul>
+</section>
+
+    <!-- Section Expérience professionnelle -->
+<section id="experience">
+        <h2>Expérience Professionnelle</h2>
+        
+        <!-- Expérience 1 -->
+        <div class="experience" id="experience1">
+            <h3>Developpement Web</h3>
+            <p>"Fort de deux années d'expérience dans le domaine 
+              de la programmation web, j'ai réalisé de quelques projets en
+              locaux, me permettant d'acquérir une expertise moyenne et 
+              polyvalente dans ce domaine."</p>
+        </div>
+        
+        <!-- Expérience 2 -->
+        <div class="experience" id="experience2">
+            <h3>Maintenance Informatique</h3>
+            <p>"Avec peu d'années d'expérience dans la maintenance 
+              informatique, j'ai acquis une expertise peu approfondie dans 
+              le dépannage, la réparation et le maintien des ordinateurs, 
+              assurant ainsi le bon fonctionnement de certains de ses systèmes."</p>
+        </div>
+        
+        <!-- Expérience 3 -->
+        <div class="experience" id="experience3">
+            <h3>Developpement Mobile</h3>
+            <p>"Fort dans le développement mobile depuis un temps, 
+              j'ai contribué à la création d'application conviviale pour un
+             projet scolaire."</p>
+        </div>
+                      <!-- Expérience 4 -->
+        <div class="experience" id="experience4">
+            <h3>Conception de Systeme d'information</h3>
+            <p>"Avec une solide base dans la conception de systèmes d'information
+              , j'ai mené quelques projets personnelles</p>
+        </div>
+    </section>
+    <!-- Section Portfolio -->
+    <section id="portfolio">
+    <h2>Portfolio</h2>
+    <p>Voici quelques-uns de mes projets :</p>
+    <div class="project">
+        <h3>Projet 1</h3>
+        <p>C'est une page web qui célèbre la nouvelle année. Elle
+          comprend un texte changeant avec des animations de couleur, des vœux pour 
+          l'année 2024, des animations de vœux "Bonne Année" se déplaçant à différents 
+          endroits de la page, et un élément tournant avec le texte "KPD". 
+          Le contenu est stylisé avec des polices personnalisées et des animations CSS pour 
+          créer un effet visuel attractif. En bas de la page, il y a un pied de page avec des 
+          informations sur l'entité ou l'organisation à l'origine de la plateforme.</p>
+        <img src="projet1.jpg" alt="Projet 1" class="project-image">
+      <br>
+        <a href="https://kouyahbe.000webhostapp.com/" target="_blank">Voir le projet</a>
+    </div>
+    <div class="project">
+        <h3>Projet 2</h3>
+        <p>Description du projet 2...</p>
+        <img src="projet2.jpg" alt="Projet 2">
+        <a href="lien_vers_projet2" target="_blank">Voir le projet</a>
+    </div>
+    <!-- Ajoutez d'autres projets selon vos besoins -->
+</section>
+<br>
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Désireux(se) d'en apprendre davantage sur mon profil professionnel, 
+          mes réalisations et mes projets? Contactez-moi pour discuter de collaborations, 
+          opportunités ou simplement pour échanger des idées!</p>
+          <div class="contact-icons">
+        <a href="mailto:kouyahbepd@gmail.com"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/+237657233593"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/kouyahbe.payimideube"><i class="fab fa-facebook"></i></a>
+        <a href="tel:+237657233593"><i class="fas fa-phone"></i></a>
+    </div>
+    </section>
+
+    <script>
+                  function toggleContent() {
+            var content = document.getElementById("a-propos-content");
+            content.classList.toggle("revealed"); // Ajoute ou supprime la classe "revealed"
+        }
+           let currentIndex = 1;
+        const images = [ 'image2.jpg'];
+        const dots = document.querySelectorAll('.dot');
+
+        function changeBackgroundImage(index) {
+            document.querySelector('.background-images').style.backgroundImage = `url('${images[index]}')`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        function nextBackgroundImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            changeBackgroundImage(currentIndex);
+        }
+
+        function previousBackgroundImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            changeBackgroundImage(currentIndex);
+        }
+
+        document.getElementById('previousButton').addEventListener('click', previousBackgroundImage);
+        document.getElementById('nextButton').addEventListener('click', nextBackgroundImage);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                currentIndex = index;
+                changeBackgroundImage(index);
+            });
+        });
+
+        setInterval(nextBackgroundImage, 10000); // Défiler automatiquement toutes les 5 secondes
+ 
+        // JavaScript pour le menu hamburger
+        const menuIcon = document.querySelector('.menu-icon');
+        const menu = document.querySelector('.menu');
+
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('show');
+            menuIcon.classList.toggle('open');
+        });
+
+        // Fermer le menu lorsque l'utilisateur clique en dehors du menu
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = menu.contains(event.target);
+            const isClickInsideMenuIcon = menuIcon.contains(event.target);
+            if (!isClickInsideMenu && !isClickInsideMenuIcon) {
+                menu.classList.remove('show');
+                menuIcon.classList.remove('open');
+            }
+        });
+
+        // Ajouter un événement de clic à chaque élément du menu pour déplacer la page
+        const menuLinks = document.querySelectorAll('.menu a');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                // Récupérer l'attribut href pour trouver la cible
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                // Défiler vers la section cible
+                if (targetSection) {
+                    event.preventDefault();
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Fermer le menu hamburger
+                    menu.classList.remove('show');
+                    menuIcon.classList.remove('open');
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>
